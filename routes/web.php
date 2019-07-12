@@ -26,9 +26,6 @@ Route::get('/student', function () {
 Route::get('/student=View', function () {
     return view('pages.Information.studentView');
 });
-Route::get('/school', function () {
-    return view('pages.School.school');
-});
 Route::get('/time', function () {
     return view('pages.Time.timeTable');
 });
@@ -38,4 +35,6 @@ Route::get('/time=View', function () {
 Route::get('/student=Create', function () {
     return view('pages.Information.studentCreate');
 });
+Route::resource('school', 'SchoolController');
+Route::resource('student', 'StudentController');
 Route::get('/home', 'HomeController@index')->name('home');

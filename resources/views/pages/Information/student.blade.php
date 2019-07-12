@@ -7,7 +7,7 @@
     </div>
     <div class="row">
         <input type="search" name="" id="" class="form-control col-md-6" placeholder="search">
-        <a href="/student=Create" class="btn btn-primary offset-md-4 col-md-2">Add Student</a>
+        <a href="/student/create" class="btn btn-primary offset-md-4 col-md-2">Add Student</a>
     </div>
         <table class="table">
             <tr>
@@ -16,11 +16,18 @@
                 <th>Course</th>
                 <th>Action</th>
             </tr>
-            <tr>
-                <td>21233212</td>
-                <td>Example Name</td>
-                <td>BSIT</td>
-                <td><a href="/student=View" class="btn btn-primary">View</a> <a href="" class="btn btn-primary">Edit</a> <a href="" class="btn btn-primary">Delete</a></td>
-            </tr>
+            @if (count($students) > 0)
+                @foreach ($students as $student)
+                <tr>
+                    <td>{{$student->id}}</td>
+                    <td>{{$student->Fname}} {{$student->Mname}} {{$student->Lname}}</td>
+                    <td>{{$student->Course}}</td>
+                    <td></td>
+                </tr>
+                @endforeach 
+
+            @else
+            No Inputs
+             @endif
         </table>
 @endsection
