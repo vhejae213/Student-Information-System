@@ -37,4 +37,5 @@ Route::get('/student=Create', function () {
 });
 Route::resource('school', 'SchoolController');
 Route::resource('student', 'StudentController');
+Route::resource('time', 'timeControler');
 Route::get('/home', 'HomeController@index')->name('home');

@@ -30,7 +30,38 @@
       </div>
     </div>
   </div>
-<button class="btn btn-primary">Add Subject</button>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal1">
+      Add Subject
+    </button>
+<div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form action="{{action('SchoolController@store')}}" method="post">
+        <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabel">Subject</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <label for="">Code</label>
+            <input type="text" name="code" id="" class="form-control">
+            <label for="">Descriptive</label>
+            <input type="text" name="descriptive" id="" class="form-control">
+            <label for="">Time</label>
+            <input type="text" name="time" id="" class="form-control">
+            <label for="">Day</label>
+            <input type="text" name="day" id="" class="form-control">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" name="submit" value="sub">Add Subject</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
 <br><br>
 
 <div class="row">
@@ -100,7 +131,62 @@
             <th>Descriptive</th>
             <th>Time</th>
             <th>Day</th>
+            <th>Action</th>
         </tr>
+        @if (count($subjects) > 0)
+          @foreach ($subjects as $subject)
+              <tr>
+                <td>{{$subject->code}}</td>
+                <td>{{$subject->descriptive}}</td>
+                <td>{{$subject->time}}</td>
+                <td>{{$subject->day}}</td>
+                <td>
+                    <button type="button" class="btn-sm btn btn-primary" data-toggle="modal" data-target="#example{{$subject->id}}">
+                        View
+                      </button>
+                      
+                  <form action="{{action('SchoolController@update', $subject->id)}} "method="post">
+                    <input type="hidden" name="_method" value="PUT">
+                    <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
+                    <button type="submit" name="submit" value="dels" class="btn-sm btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete">
+                        <i class="fa fa-trash fa-sm" aria-hidden="true"></i>
+                    </button>
+                    </form> 
+                  </td>
+              </tr>
+              <div class="modal fade" id="example{{$subject->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <form action="{{action('SchoolController@update', $subject->id)}}" method="post">
+                      <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
+                      <input name="_method" type="hidden" value="PUT"/>
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabel">Subject</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                          <label for="">Code</label>
+                          <input type="text" name="code" id="" value="{{$subject->code}}" class="form-control">
+                          <label for="">Descriptive</label>
+                          <input type="text" name="descriptive" id="" value="{{$subject->descriptive}}" class="form-control">
+                          <label for="">Time</label>
+                          <input type="text" name="time" id="" value="{{$subject->time}}" class="form-control">
+                          <label for="">Day</label>
+                          <input type="text" name="day" id="" value="{{$subject->day}}" class="form-control">
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" name="submit" value="subu">Update Subject</button>
+                      </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+          
+          @endforeach
+        @endif
     </table>
 </div>
 

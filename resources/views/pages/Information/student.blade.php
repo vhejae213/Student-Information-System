@@ -13,6 +13,7 @@
             <tr>
                 <th>ID No.</th>
                 <th>Name</th>
+                <th>Gender</th>
                 <th>Course</th>
                 <th>Action</th>
             </tr>
@@ -21,8 +22,9 @@
                 <tr>
                     <td>{{$student->id}}</td>
                     <td>{{$student->Fname}} {{$student->Mname}} {{$student->Lname}}</td>
+                    <td>{{$student->Gender}}</td>
                     <td>{{$student->Course}}</td>
-                    <td></td>
+                <td><a href="/student/{{$student->id}}" class="btn btn-primary">view</a></td>
                 </tr>
                 @endforeach 
 

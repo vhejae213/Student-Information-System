@@ -11,11 +11,19 @@
          <th>Department</th>
          <th></th>
      </tr>
-     <tr>
-         <td>Example Name</td>
-         <td>College of Computer Studies</td>
-         <td>BSIT</td>
-         <td><a href="/time=View" class="btn btn-primary">View</a></td>
-     </tr>
+     @if (count($students) > 0)
+                @foreach ($students as $student)
+                <tr>
+                    <td>{{$student->id}}</td>
+                    <td>{{$student->Fname}} {{$student->Mname}} {{$student->Lname}}</td>
+                    <td>{{$student->Gender}}</td>
+                    <td>{{$student->Course}}</td>
+                <td><a href="/time/{{$student->id}}" class="btn btn-primary">view</a></td>
+                </tr>
+                @endforeach 
+
+            @else
+            No Inputs
+             @endif
  </table>
 @endsection

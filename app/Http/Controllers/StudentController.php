@@ -44,11 +44,12 @@ class StudentController extends Controller
         $student->Fname = $request->input('fname');
         $student->Mname = $request->input('mname');
         $student->Lname = $request->input('lname');
+        $student->Gender = $request->input('gender');
         $student->Contact = $request->input('contact');
         $student->Address = $request->input('address');
         $student->Course = $request->input('course');
         $student->save();
-        return redirect('/student')->with('success','Item created successfully!');
+        return redirect('/student')->with('success','Record created successfully!');
     }
 
     /**
@@ -59,7 +60,10 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        //
+        $student = student::find($id);
+        return view('pages.Information.studentView')
+        ->with('student', $student);
+
     }
 
     /**
@@ -70,7 +74,11 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $courses = course::all();
+        $student = student::find($id);
+        return view('pages.Information.studentEdit')
+        ->with('student', $student)
+        ->with('courses', $courses);
     }
 
     /**
@@ -82,7 +90,16 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $student = student::find($id);
+        $student->Fname = $request->input('fname');
+        $student->Mname = $request->input('mname');
+        $student->Lname = $request->input('lname');
+        $student->Gender = $request->input('gender');
+        $student->Contact = $request->input('contact');
+        $student->Address = $request->input('address');
+        $student->Course = $request->input('course');
+        $student->save();
+        return redirect('student/'.$id)->with('success','Updated successfully!');
     }
 
     /**
@@ -93,6 +110,8 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $student = student::find($id);
+        $student->delete();
+        return redirect('student')->with('success','Record Deleted successfully!');
     }
 }
