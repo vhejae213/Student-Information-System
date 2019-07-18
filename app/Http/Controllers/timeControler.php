@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\student;
+use App\Subject;
 
 class timeControler extends Controller
 {
@@ -37,7 +39,11 @@ class timeControler extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $time = DB::table('subjects')
+        ->select('subjects.*')
+        ->join('times','times.subject_id','=','subjects.id')
+        ->where('courses.Course', $student->Course)
+        ->first();
     }
 
     /**
@@ -48,9 +54,17 @@ class timeControler extends Controller
      */
     public function show($id)
     {
-        $students = student::all();
-        return view('pages.Time.timeTable')
-        ->with('students', $students);
+        $student = student::find($id);
+        $dept = DB::table('departments')
+        ->select('departments.*')
+        ->join('courses','courses.Departent_id','=','departments.id')
+        ->where('courses.Course', $student->Course)
+        ->first();
+        $subjects = Subject::all();
+        return view('pages.Time.timeSubj')
+        ->with('student', $student)
+        ->with('subjects', $subjects)
+        ->with('dept', $dept);
     }
 
     /**

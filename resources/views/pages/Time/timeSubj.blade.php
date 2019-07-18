@@ -1,42 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Add time
-</button>
 
-<!-- Modal -->
+  
+
+<h3>{{$student->Fname}} {{$student->Mname}} {{$student->Lname}}</h3>
+<h5>{{$student->Course}}</h5>
+<p>{{$dept->Departent}}</p>
+<form action="{{action('SchoolController@store')}}" method="post">
+<input name="_token" type="hidden" value="{{ csrf_token() }}"/>
+<input name="stud_id" type="hidden" value="{{$student->id}}"/>
 <div class="row">
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      <div>
-      <label for="">Subject</label>
-        <select name="" id="" class="form-control">
-        <option value="">1</option>
-        <option value="">2</option>
-        </select>
-        </div>
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
+    <button type="submit" class="btn btn-primary col-md-2">Add Time</button>
+    <select name="" id="" class="form-control col-md-10">
+    @if (count($subjects) > 0)
+    @foreach ($subjects as $subject)
+        <option value="{{$subject->id}}">{{$subject->code}} {{$subject->descriptive}} {{$subject->time}} {{$subject->day}}</option>
+    @endforeach
+    @endif
+    </select>
 </div>
-</div>
-<h3>Example Name</h3>
-<h5>Bachelor of Science in Information Technology</h5>
-<p>College of Computer Studies</p>
+</form>
 <table class="table">
     <tr>
         <th></th>
@@ -55,8 +39,8 @@
         <td></td>
         <td></td>
         <td></td>
-        <td>SocSci 104</td>
-        <td>SocSci 104</td>
+        <td></td>
+        <td></td>
     </tr>
     <tr>
         <td>08:00 Am</td>

@@ -18,7 +18,7 @@
                     <td>{{$student->Fname}} {{$student->Mname}} {{$student->Lname}}</td>
                     <td>{{$student->Gender}}</td>
                     <td>{{$student->Course}}</td>
-                <td><a href="/time/{{$student->id}}" class="btn btn-primary">view</a></td>
+                <td><a href="/time/{{$student->id}}" class="btn btn-primary">View</a></td>
                 </tr>
                 @endforeach 
 

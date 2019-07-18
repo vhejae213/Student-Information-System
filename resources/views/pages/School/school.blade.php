@@ -49,7 +49,7 @@
             <input type="text" name="code" id="" class="form-control">
             <label for="">Descriptive</label>
             <input type="text" name="descriptive" id="" class="form-control">
-            <label for="">Time</label>
+            <label for="">Time(Format HH:mm tt or 00:00 pm/am)</label>
             <input type="text" name="time" id="" class="form-control">
             <label for="">Day</label>
             <input type="text" name="day" id="" class="form-control">
