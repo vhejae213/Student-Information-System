@@ -35,6 +35,9 @@ Route::get('/time=View', function () {
 Route::get('/student=Create', function () {
     return view('pages.Information.studentCreate');
 });
+Route::get('generate-pdf/{id}','pdfController@downloadPDF');
+Route::get('pdf','pdfController@report');
+Route::get('time/timepdf/{id}','pdfController@timereport');
 Route::resource('school', 'SchoolController');
 Route::resource('student', 'StudentController');
 Route::resource('time', 'timeControler');

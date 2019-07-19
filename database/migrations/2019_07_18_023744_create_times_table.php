@@ -17,9 +17,6 @@ class CreateTimesTable extends Migration
             $table->bigIncrements('id');
             $table->string('student_id');
             $table->string('subject_id');
-            $table->string('code');
-            $table->string('time');
-            $table->string('day');
             $table->timestamps();
         });
     }

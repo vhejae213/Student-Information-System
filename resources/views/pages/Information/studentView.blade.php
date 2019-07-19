@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    <a href="generate-pdf/{{$student->id}}">Print</a>
     <a href="/student" class="btn btn-primary">Go Back</a>
     <br><br>
     <p><b>Name</b><i>(First name, Middle name, Last Name)</i></p>

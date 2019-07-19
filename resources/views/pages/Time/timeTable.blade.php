@@ -3,7 +3,9 @@
 @section('content')
 <div class="row">
     <input type="search" name="" id="" class="form-control col-md-6" placeholder="search">
+    
 </div>
+
  <table class="table">
      <tr>
          <th>Name</th>
@@ -11,6 +13,7 @@
          <th>Department</th>
          <th></th>
      </tr>
+     
      @if (count($students) > 0)
                 @foreach ($students as $student)
                 <tr>

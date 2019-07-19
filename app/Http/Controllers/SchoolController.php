@@ -46,8 +46,8 @@ class SchoolController extends Controller
     {
         if($request->submit == "dept"){
             $this->validate($request, [
-                'DepartmentName' => 'required',
-                'DepartmentAbbreviation' => 'required',
+                'DepartmentName|regex:/^[a-zA-Z]+$/u' => 'required',
+                'DepartmentAbbreviation|regex:/^[a-zA-Z]+$/u' => 'required',
             ]);
             $dept = new Department;
             $dept->Departent = $request->input('DepartmentName');
@@ -56,8 +56,8 @@ class SchoolController extends Controller
             return redirect('/school')->with('success','Department created successfully!');
         }else if($request->submit == "course"){
             $this->validate($request, [
-                'CourseName' => 'required',
-                'CourseAbbreviation' => 'required',
+                'CourseName' => 'required|regex:/^[a-zA-Z]+$/u',
+                'CourseAbbreviation' => 'required|regex:/^[a-zA-Z]+$/u',
             ]);
             $Cou = new course;
             $Cou->Departent_id = $request->input('dept_id');

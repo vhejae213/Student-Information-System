@@ -27,6 +27,7 @@ class StudentController extends Controller
      */
     public function create()
     {
+        
         $courses = course::all();
         return view('pages.Information.studentCreate')
         ->with('courses', $courses);
@@ -40,6 +41,15 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'fname' => 'required|regex:/^[a-zA-Z]+$/u',
+            'mname' => 'required|regex:/^[a-zA-Z]+$/u',
+            'lname' => 'required|regex:/^[a-zA-Z]+$/u',
+            'gender' => 'required',
+            'contact' => 'required|integer',
+            'address' => 'required|regex:/^[a-zA-Z]+$/u',
+            'course' => 'required',
+        ]);
         $student = new student;
         $student->Fname = $request->input('fname');
         $student->Mname = $request->input('mname');
@@ -63,6 +73,7 @@ class StudentController extends Controller
         $student = student::find($id);
         return view('pages.Information.studentView')
         ->with('student', $student);
+        
 
     }
 
